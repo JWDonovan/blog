@@ -1,0 +1,72 @@
+<nav aria-label="main navigation" class="navbar" role="navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="<%= root_url %>">
+            <img alt="logo" src="https://bulma.io/images/bulma-logo.png">
+        </a>
+        <a aria-expanded="false" aria-label="menu" class="navbar-burger burger" id="navbar-burger" roles="button">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div class="navbar-menu" id="mobile-navbar">
+        <div class="navbar-start">
+            <a class="navbar-item" href="<%= posts_path %>">Posts</a>
+            <a class="navbar-item" href="/latest">Latest</a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link" href="#">Contact</a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="#">
+                        <span class="icon">
+                            <%= fa_icon "user-circle" %>
+                        </span>
+                        <span>About</span>
+                    </a>
+                    <a class="navbar-item" href="#">
+                        <span class="icon">
+                            <%= fa_icon "briefcase" %>
+                        </span>
+                        <span>Portfolio</span>
+                    </a>
+                    <a class="navbar-item" href="#">
+                        <span class="icon">
+                            <%= fa_icon "thumbs-up" %>
+                        </span>
+                        <span>Hire Me!</span>
+                    </a>
+                    
+                    <hr class="navbar-divider">
+
+                    <a class="navbar-item" href="#">
+                        <span class="icon">
+                            <%= fa_icon "bug" %>
+                        </span>
+                        <span>Report an issue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary">
+                        <strong>Sign up</strong>
+                        <span class="icon">
+                            <%= fa_icon "user-plus" %>
+                        </span>
+                    </a>
+                    <a class="button is-light">
+                        <strong>Log in</strong>
+                        <span class="icon">
+                            <%= fa_icon "sign-in" %>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

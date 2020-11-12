@@ -1,0 +1,12 @@
+<%= render partial: 'application/header' %>
+
+<section class="container is-max-desktop is-max-post mt-6">
+    <h1 class="title"><%= @post.title %></h1>
+    <!--<%= @post.slug %>-->
+    <%= @post.subtitle %>
+    <%= @post.datetime %>
+    <%= image_tag(@post.hero_image) %>
+    <%= @post.body %>
+    <!--<%= @post.published %>-->
+    <!--<%= @post.comments_enabled %>-->
+</div>

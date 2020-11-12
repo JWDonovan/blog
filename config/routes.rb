@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  root 'post#index'
-  resource :post
+  root 'posts#index'
+  
+  resources :posts
+
+  get 'latest', to: 'posts#latest'
 end

@@ -1,0 +1,10 @@
+<%= render partial: 'application/header' %>
+
+<%= @posts.each do |p| %>
+    <%= p.title %>
+    <%= p.datetime %>
+    <%= p.body %>
+    <%= link_to 'Show', post_path(p.slug) %>
+    <%= link_to 'Edit', edit_post_path(p.slug) %>
+    <%= link_to 'Destroy', post_path(p.slug), method: :delete, data: {confirm: "Are you sure?"} %>
+<% end %>

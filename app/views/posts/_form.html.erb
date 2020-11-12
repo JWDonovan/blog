@@ -1,0 +1,52 @@
+<!--
+title
+slug
+subtitle
+datetime
+hero image
+body
+published
+comments_enabled
+-->
+
+<%= form_with model: @post, class: "container is-max-desktop is-max-post mt-6" do |f| %>
+    <h1 class="title"><%= @form_title %></h1>
+
+    <%= f.text_field :title, placeholder: "Title", class: "input mb-4", id: "post-title", autocomplete: "off" %>
+    <%= f.text_field :slug, placeholder: "Slug", class: "input mb-4", id: "post-slug" %>
+    <%= f.text_field :subtitle, placeholder: "Subtitle", class: "input mb-4" %>
+    <%= f.datetime_local_field :datetime, class: "input mb-4" %>
+    <div class="file has-name is-fullwidth mb-4">
+        <label class="file-label">
+            <%= f.file_field :hero_image, class: "file-input" %>
+            <span class="file-cta">
+                <span class="file-icon">
+                    <%= fa_icon "upload" %>
+                </span>
+                <span class="file-label">
+                    Choose a hero image...
+                </span>
+            </span>
+            <span class="file-name"></span>
+        </label>
+    </div>
+    <%= f.rich_text_area :body, class: "editor-min-height mb-4" %>
+    <label class="checkbox mb-4">Publish<%= f.check_box :published, class: "ml-2" %></label>
+    <label class="checkbox mb-4 ml-4">Enable Comments<%= f.check_box :comments_enabled, class: "ml-2" %></label>
+    <div class="is-grouped">
+        <a class="button is-danger is-outlined" href="<%= posts_url %>">
+            <span>Discard</span>
+            <span class="icon is-small">
+                <%= fa_icon "times" %>
+            </span>
+        </a>
+        <button class="button is-success" type="submit">
+            <span>Save</span>
+            <span class="icon is-small">
+                <%= fa_icon "check" %>
+            </span>
+        </button>
+    </div>
+<% end %>
+
+<!-- redirect to show using slug on save, show error on missing params, required fields, add padding/styling to trix editor -->
