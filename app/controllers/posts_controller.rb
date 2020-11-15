@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+    before_action :set_post, only: [:edit, :update]
+
     def index
         @posts = Post.all
     end
@@ -14,16 +16,28 @@ class PostsController < ApplicationController
 
         if @post.save
             redirect_to @post
+            # redirect_to using slug instead of id for create and update functions 
         else
             # flash.now[:error] = error_message
             render :new
         end
     end
 
+    def update
+        @post = Post.find(params[:id])
+
+        if @post.update(post_params)
+            redirect_to @post
+        else
+            # flash.now[:error] = error_message
+            render :edit
+        end
+    end
+
     def edit
         @form_title = "Edit Post"
 
-        @post
+        @post = Post.find_by_slug(params[:id])
     end
 
     def show
@@ -46,6 +60,10 @@ class PostsController < ApplicationController
 
     def post_params
         params.require(:post).permit(:title, :slug, :subtitle, :datetime, :hero_image, :body, :published, :comments_enabled)
+    end
+
+    def set_post
+        @post = Post.find_by_slug(params[:id])
     end
 
     # edit form should auto populate
