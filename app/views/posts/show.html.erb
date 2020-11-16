@@ -1,12 +1,21 @@
 <%= render partial: 'application/header' %>
 
-<section class="container is-max-desktop is-max-post mt-6">
-    <h1 class="title"><%= @post.title %></h1>
-    <!--<%= @post.slug %>-->
-    <%= @post.subtitle %>
-    <%= @post.datetime %>
-    <%= image_tag(@post.hero_image) %>
-    <%= @post.body %>
+<section class="container is-max-desktop is-max-post mt-6 p-6">
+    <h1 class="title pb-2 is-size-4-touch"><%= @post.title %></h1>
+    <p class="mb-2 is-italic has-text-weight-light has-text-grey-dark"><%= @post.subtitle %></p>
+    <!--<%= @post.datetime %>-->
+    <%= time_ago_in_words(@post.datetime) + ' ago' %>
+    <figure class="image">
+        <%= image_tag(@post.hero_image) %>
+    </figure>
+    <div class="content my-6">
+        <%= @post.body %>
+    </div>
     <!--<%= @post.published %>-->
     <!--<%= @post.comments_enabled %>-->
+    <% if @post.comments_enabled %>
+        <%= render partial: 'posts/comments' %>
+    <% else %>
+        <%= render partial: 'posts/comments_disabled' %>
+    <% end %>
 </div>

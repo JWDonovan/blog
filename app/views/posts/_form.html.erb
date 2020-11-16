@@ -12,8 +12,6 @@ comments_enabled
 <%= form_with model: @post, class: "container is-max-desktop is-max-post mt-6" do |f| %>
     <h1 class="title"><%= @form_title %></h1>
 
-    <%= f.hidden_field :id %>
-
     <%= f.text_field :title, placeholder: "Title", class: "input mb-4", id: "post-title", autocomplete: "off" %>
     <%= f.text_field :slug, placeholder: "Slug", class: "input mb-4", id: "post-slug" %>
     <%= f.text_field :subtitle, placeholder: "Subtitle", class: "input mb-4" %>
