@@ -1,10 +1,26 @@
 <%= render partial: 'application/header' %>
 
-<%= @posts.each do |p| %>
-    <%= p.title %>
-    <%= p.datetime %>
-    <%= p.body %>
-    <%= link_to 'Show', post_path(p.slug) %>
-    <%= link_to 'Edit', edit_post_path(p.slug) %>
-    <%= link_to 'Destroy', post_path(p.slug), method: :delete, data: {confirm: "Are you sure?"} %>
-<% end %>
+<section class="container is-max-desktop is-max-post">
+    <% @posts.each do |p| %>
+        <div class="box content mt-6">
+            <a href="<%= post_path(p.slug) %>">
+                <h1 class="title is-2"><%= p.title %></h1>
+            </a>
+            <p class="subtitle is-italic is-4"><%= p.subtitle %></p>
+            <%= time_ago_in_words(p.datetime) + ' ago' %>
+            <div class="content my-4" style="max-height: 10em; text-overflow: ellipsis; overflow: hidden;"><%= p.body %></div>
+            <a class="button is-light is-primary" href="<%= post_path(p.slug) %>">
+                <span class="mr-2">Read</span>
+                <%= fa_icon "book" %>
+            </a>
+            <a class="button is-light is-link" href="<%= edit_post_path(p.slug) %>">
+                <span class="mr-2">Edit</span>
+                <%= fa_icon "pencil" %>
+            </a>
+            <%= link_to post_path(p.slug), method: :delete, data: {confirm: "Are you sure?"}, class: "button is-danger is-light" do %>
+                <span class="mr-2">Delete</span>
+                <%= fa_icon "trash" %>
+            <% end %>
+        </div>
+    <% end %>
+</section>
