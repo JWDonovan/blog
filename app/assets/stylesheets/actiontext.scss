@@ -36,7 +36,13 @@
 }
 
 trix-editor {
+  padding: 2em;
+
   &.editor-min-height {
     min-height: 50vh;
+  }
+
+  ol {
+    padding-left: 2em;
   }
 }
