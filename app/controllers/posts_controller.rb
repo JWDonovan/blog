@@ -15,8 +15,7 @@ class PostsController < ApplicationController
         @post = Post.new(post_params)
 
         if @post.save
-            redirect_to @post
-            # redirect_to using slug instead of id for create and update functions 
+            redirect_to "/posts/#{@post.slug}"
         else
             # flash.now[:error] = error_message
             render :new
@@ -27,7 +26,7 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
 
         if @post.update(post_params)
-            redirect_to @post
+            redirect_to "/posts/#{@post.slug}"
         else
             # flash.now[:error] = error_message
             render :edit
@@ -65,7 +64,4 @@ class PostsController < ApplicationController
     def set_post
         @post = Post.find_by_slug(params[:id])
     end
-
-    # edit form should auto populate
-    # make update method work
 end
