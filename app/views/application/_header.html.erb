@@ -51,22 +51,80 @@
         </div>
 
         <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-primary" href="<%= new_user_registration_url %>">
-                        <strong>Sign up</strong>
+            <% if user_signed_in? %>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
                         <span class="icon">
-                            <%= fa_icon "user-plus" %>
+                            <%= fa_icon "user-circle" %>
                         </span>
+                        <span><%= current_user.email %></span>
                     </a>
-                    <a class="button is-light" href="<%= new_user_session_url %>">
-                        <strong>Log in</strong>
-                        <span class="icon">
-                            <%= fa_icon "sign-in" %>
-                        </span>
-                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            <span class="icon">
+                                <%= fa_icon "sliders" %>
+                            </span>
+                            <span>Settings</span>
+                        </a>
+                        <a class="navbar-item">
+                            <span class="icon">
+                                <%= fa_icon "comments" %>
+                            </span>
+                            <span>Comments</span>
+                        </a>
+
+                        <% if true %> <!-- if author -->
+                            <a class="navbar-item">
+                                <span class="icon">
+                                    <%= fa_icon "plus-circle" %>
+                                </span>
+                                <span>New Post</span>
+                            </a>
+                        <% end %>
+
+                        <% if true %> <!-- if admin -->
+                            <hr class="navbar-divider">
+                            <a class="navbar-item">
+                                <span class="icon">
+                                    <%= fa_icon "users" %>
+                                </span>
+                                <span>Users</span>
+                            </a>
+                            <a class="navbar-item">
+                                <span class="icon">
+                                    <%= fa_icon "bar-chart" %>
+                                </span>
+                                <span>Stats</span>
+                            </a>
+                        <% end %>
+
+                        <hr class="navbar-divider">
+                        <%= link_to destroy_user_session_url, method: :delete, class: "navbar-item" do %>
+                            <span class="icon">
+                                <%= fa_icon "sign-out" %>
+                            </span>
+                            <span>Log out</span>
+                        <% end %>
+                    </div>
                 </div>
-            </div>
+            <% else %>
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="<%= new_user_registration_url %>">
+                            <strong>Sign up</strong>
+                            <span class="icon">
+                                <%= fa_icon "user-plus" %>
+                            </span>
+                        </a>
+                        <a class="button is-light" href="<%= new_user_session_url %>">
+                            <strong>Log in</strong>
+                            <span class="icon">
+                                <%= fa_icon "sign-in" %>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            <% end %>
         </div>
     </div>
 </nav>
