@@ -13,13 +13,16 @@
                 <span class="mr-2">Read</span>
                 <%= fa_icon "book" %>
             </a>
-            <a class="button is-light is-link" href="<%= edit_post_path(p.slug) %>">
-                <span class="mr-2">Edit</span>
-                <%= fa_icon "pencil" %>
-            </a>
-            <%= link_to post_path(p.slug), method: :delete, data: {confirm: "Are you sure?"}, class: "button is-danger is-light" do %>
-                <span class="mr-2">Delete</span>
-                <%= fa_icon "trash" %>
+
+            <% if user_signed_in? %> <!-- change to author/admin role check -->
+                <a class="button is-light is-link" href="<%= edit_post_path(p.slug) %>">
+                    <span class="mr-2">Edit</span>
+                    <%= fa_icon "pencil" %>
+                </a>
+                <%= link_to post_path(p.slug), method: :delete, data: {confirm: "Are you sure?"}, class: "button is-danger is-light" do %>
+                    <span class="mr-2">Delete</span>
+                    <%= fa_icon "trash" %>
+                <% end %>
             <% end %>
         </div>
     <% end %>
