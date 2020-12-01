@@ -73,16 +73,13 @@
                             <span>Comments</span>
                         </a>
 
-                        <% if true %> <!-- if author -->
+                        <% if current_user.role == "admin" %>
                             <a class="navbar-item" href="<%= new_post_url %>">
                                 <span class="icon">
                                     <%= fa_icon "plus-circle" %>
                                 </span>
                                 <span>New Post</span>
                             </a>
-                        <% end %>
-
-                        <% if true %> <!-- if admin -->
                             <hr class="navbar-divider">
                             <a class="navbar-item">
                                 <span class="icon">

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-    before_action :set_post, only: [:edit, :update]
+    before_action :authenticate_user!, except: [:index, :show, :latest]
+    before_action :set_post, only: [:show, :edit, :update, :destroy]
 
     def index
         @posts = Post.all
@@ -23,8 +24,6 @@ class PostsController < ApplicationController
     end
 
     def update
-        @post = Post.find(params[:id])
-
         if @post.update(post_params)
             redirect_to "/posts/#{@post.slug}"
         else
@@ -35,16 +34,12 @@ class PostsController < ApplicationController
 
     def edit
         @form_title = "Edit Post"
-
-        @post = Post.find_by_slug(params[:id])
     end
 
     def show
-        @post = Post.find_by_slug(params[:id])
     end
 
     def destroy
-        @post = Post.find_by_slug(params[:id])
         @post.destroy
 
         redirect_to posts_path
