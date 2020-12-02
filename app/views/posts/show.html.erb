@@ -12,7 +12,6 @@
         <%= @post.body %>
     </div>
     <!--<%= @post.published %>-->
-    <!--<%= @post.comments_enabled %>-->
     <% if @post.comments_enabled %>
         <%= render partial: 'posts/comments' %>
     <% else %>

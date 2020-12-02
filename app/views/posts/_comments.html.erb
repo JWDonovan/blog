@@ -1,1 +1,35 @@
-Comments Enabled
+<div class="container is-max-desktop is-max-post my-6 box">
+    <h1 class="title">Comments</h1>
+    <div class="has-text-centered mt-6">
+        <button class="button is-info" id="load-comments">
+            <span>Load Comments</span>
+            <span class="icon">
+                <%= fa_icon "comments" %>
+            </span>
+        </button>
+    </div>
+    <div id="disqus_thread">
+    </div>
+    
+    <script>
+        const loadCommentsBtn = document.getElementById('load-comments');
+        loadCommentsBtn.addEventListener('click', loadComments, false);
+
+        const disqus_config = function() {
+            this.page.url = 'http://localhost:3000';
+            this.page.identifier = 'slug';
+        };
+
+        const disqus_shortname = 'jwdonovan-blog';
+        
+        function loadComments() {
+            (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+
+            loadCommentsBtn.remove();
+        }
+    </script>
+</div>
